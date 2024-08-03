@@ -13,10 +13,10 @@ jobs:
 
     - name: Copy and Rename Files
       run: |
-        FILE_NAME="daily-update-$('%Y.%m.%d').md"
-        cp /daily-update-2024-08-03.md ${FILE_NAME}/a.md
-        cp /daily-update-2024-08-03.md ${FILE_NAME}/b.md
-        cp /daily-update-2024-08-03.md ${FILE_NAME}/c.md
+        DATE=$(date +'%Y-%m-%d')
+        cp /daily-update-2024-08-03.md ${DATE}/a.md
+        cp /daily-update-2024-08-03.md ${DATE}/b.md
+        cp /daily-update-2024-08-03.md ${DATE}/c.md
         
     - name: Commit and Push
       run: |
