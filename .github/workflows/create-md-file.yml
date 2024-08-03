@@ -14,7 +14,7 @@ jobs:
     - name: Copy and Rename Files
       run: |
         DATE=$(date +'%Y-%m-%d')
-        mkdir -p ${DATE}
+        mkdir -p ${DATE}a
         cp daily-update-2024-08-03.md ${DATE}a/a.md
         cp daily-update-2024-08-03.md ${DATE}a/b.md
         cp daily-update-2024-08-03.md ${DATE}a/c.md
