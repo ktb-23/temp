@@ -23,7 +23,7 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add path/to/a.md path/to/b.md path/to/c.md path/to/d.md path/to/e.md path/to/f.md
+        git add .
         git commit -m "Add copied files with new names"
         git push
       env:
