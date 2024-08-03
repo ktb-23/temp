@@ -1,0 +1,33 @@
+name: Create Markdown File
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-md-file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Generate Markdown File
+      run: |
+        FILE_NAME="daily-update-$(date +'%Y-%m-%d').md"
+        echo "# Daily Update - $(date +'%Y-%m-%d')" > $FILE_NAME
+        echo "" >> $FILE_NAME
+        echo "## Summary" >> $FILE_NAME
+        echo "- " >> $FILE_NAME
+        echo "" >> $FILE_NAME
+        echo "## Details" >> $FILE_NAME
+        echo "- " >> $FILE_NAME
+
+    - name: Commit and Push
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add .
+        git commit -m "Add daily update for $(date +'%Y-%m-%d')"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
