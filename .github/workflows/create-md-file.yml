@@ -15,9 +15,9 @@ jobs:
       run: |
         DATE=$(date +'%Y-%m-%d')
         mkdir -p ${DATE}
-        cp daily-update-2024-08-03.md ${DATE}/a.md
-        cp daily-update-2024-08-03.md ${DATE}/b.md
-        cp daily-update-2024-08-03.md ${DATE}/c.md
+        cp daily-update-2024-08-03.md ${DATE}a/a.md
+        cp daily-update-2024-08-03.md ${DATE}a/b.md
+        cp daily-update-2024-08-03.md ${DATE}a/c.md
         
     - name: Commit and Push
       run: |
@@ -28,3 +28,10 @@ jobs:
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+    - name: Send Notification to Discord
+      run: |
+        DISCORD_WEBHOOK_URL=${{ secrets.DISCORD_WEBHOOK_URL }}
+        curl -H "Content-Type: application/json" \
+             -d "{\"content\": \"New markdown files have been created on ${DATE}:\n- a.md\n- b.md\n- c.md\n- d.md\n- e.md\n- f.md\"}" \
+             $DISCORD_WEBHOOK_URL
