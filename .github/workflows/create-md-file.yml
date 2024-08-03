@@ -11,23 +11,20 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Generate Markdown File
+    - name: Copy and Rename Files
       run: |
-        FILE_NAME="daily-update-$(date +'%Y-%m-%d').md"
-        echo "# Daily Update - $(date +'%Y-%m-%d')" > $FILE_NAME
-        echo "" >> $FILE_NAME
-        echo "## Summary" >> $FILE_NAME
-        echo "- " >> $FILE_NAME
-        echo "" >> $FILE_NAME
-        echo "## Details" >> $FILE_NAME
-        echo "- " >> $FILE_NAME
-
+        # 특정 경로에서 파일을 복사하여 이름을 변경
+        FILE_NAME="daily-update-$('%Y.%m.%d').md"
+        cp /daily-update-2024-08-03.md ${FILE_NAME}/a.md
+        cp /daily-update-2024-08-03.md ${FILE_NAME}/b.md
+        cp /daily-update-2024-08-03.md ${FILE_NAME}/c.md
+        
     - name: Commit and Push
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add .
-        git commit -m "Add daily update for $(date +'%Y-%m-%d')"
+        git add path/to/a.md path/to/b.md path/to/c.md path/to/d.md path/to/e.md path/to/f.md
+        git commit -m "Add copied files with new names"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
