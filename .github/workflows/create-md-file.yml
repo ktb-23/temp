@@ -13,7 +13,6 @@ jobs:
 
     - name: Copy and Rename Files
       run: |
-        # 특정 경로에서 파일을 복사하여 이름을 변경
         FILE_NAME="daily-update-$('%Y.%m.%d').md"
         cp /daily-update-2024-08-03.md ${FILE_NAME}/a.md
         cp /daily-update-2024-08-03.md ${FILE_NAME}/b.md
